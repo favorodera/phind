@@ -6,16 +6,19 @@ const API_KEY = import.meta.env.VITE_VERIPHONE_API_KEY
 const API_URL = 'https://api.veriphone.io/v2/verify'
 const MOBILE_NUMBER = ref(null)
 const mobileNumberInfo = ref(null)
-const fetchState = ref(null)
+const fetchState = ref("Input Number to Check")
 
 const fetchMobileNumberInfo = async () => {
-  fetchState.value = 'Fetching'
+  
   try {
+    
     const response = await axios.get(`${API_URL}?key=${API_KEY}&phone=${MOBILE_NUMBER.value}`)
     mobileNumberInfo.value = response.data
-    fetchState.value = 'Fetched'
+    fetchState.value = 'Check Completed'
   } catch (error) {
-    console.log(error)
+    fetchState.value = "Error Checking. Retrying..."
+    fetchMobileNumberInfo()
+    
   }
 }
 </script>
@@ -35,8 +38,10 @@ const fetchMobileNumberInfo = async () => {
       <button type="submit" class="submit-button">CHECK</button>
     </form>
 
+    <p style="text-align: center;" >{{ fetchState }}</p>
+
     <div class="info-container">
-      <div v-if="fetchState === 'Fetched'" class="info-is-generated">
+      <div v-if="fetchState === 'Check Completed'" class="info-is-generated">
         <div class="info">
           <p class="tittle">Country:</p>
           <p class="info-generated">{{ mobileNumberInfo.country }}</p>
