@@ -33,8 +33,7 @@ const fetchMobileNumberInfo = async () => {
         id="mobile-number-input"
         class="mobile-number-input"
         placeholder="Enter Number"
-        @change.prevent="(event) => (MOBILE_NUMBER = event.target.value)"
-        @input="(event) => (MOBILE_NUMBER = event.target.value)"
+        v-model="MOBILE_NUMBER"
       />
       <button type="submit" class="submit-button">CHECK</button>
     </form>
