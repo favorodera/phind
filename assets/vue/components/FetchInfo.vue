@@ -21,7 +21,9 @@ const fetchMobileNumberInfo = async () => {
 </script>
 
 <template>
-  <a href="https://github.com/favorodera" target="_blank"><img src="../../icons/github.svg" alt="" /></a>
+  <a href="https://github.com/favorodera" target="_blank"
+    ><img src="../../icons/github.svg" alt=""
+  /></a>
 
   <div class="main-container">
     <form method="get" @submit.prevent="fetchMobileNumberInfo">
@@ -106,6 +108,7 @@ a {
   width: 100%;
   margin-bottom: 1rem;
 }
+
 .main-container {
   width: 100%;
   max-width: 42rem;
@@ -157,10 +160,12 @@ button {
   justify-content: center;
   padding: 1rem;
 }
+
 .info-container {
   width: 100%;
   display: flex;
 }
+
 .info-is-generated,
 .info-is-not-generated {
   width: 100%;
@@ -168,6 +173,7 @@ button {
   flex-direction: column;
   gap: 1rem;
 }
+
 .info,
 .info-skeleton {
   display: flex;
@@ -208,9 +214,11 @@ button {
   0% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.4;
   }
+
   100% {
     opacity: 1;
   }
