@@ -1,36 +1,41 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const API_KEY = import.meta.env.VITE_VERIPHONE_API_KEY
 const API_URL = 'https://api.veriphone.io/v2/verify'
-const MOBILE_NUMBER = '+2348024383756'
+const MOBILE_NUMBER = ref(null)
 const mobileNumberInfo = ref(null)
+const fetchState = ref(null)
 
 const fetchMobileNumberInfo = async () => {
+  fetchState.value = 'Fetching'
   try {
-    const response = await axios.get(`${API_URL}?key=${API_KEY}&phone=${MOBILE_NUMBER}`)
+    const response = await axios.get(`${API_URL}?key=${API_KEY}&phone=${MOBILE_NUMBER.value}`)
     mobileNumberInfo.value = response.data
-    console.log(mobileNumberInfo)
+    fetchState.value = 'Fetched'
   } catch (error) {
     console.log(error)
   }
 }
-
-// onMounted(() => {
-//   fetchMobileNumberInfo()
-// })
 </script>
 
 <template>
   <div class="main-container">
-    <form method="get">
-      <input type="tel" name="mobile-number" id="mobile-number" class="mobile-number" />
+    <form method="get" @submit.prevent="fetchMobileNumberInfo">
+      <input
+        type="tel"
+        name="mobile-number-input"
+        id="mobile-number-input"
+        class="mobile-number-input"
+        @change.prevent="(event) => (MOBILE_NUMBER = event.target.value)"
+        @input="(event) => (MOBILE_NUMBER = event.target.value)"
+      />
       <button type="submit" class="submit-button">CHECK</button>
     </form>
 
     <div class="info-container">
-      <div v-if="mobileNumberInfo" class="info-is-generated">
+      <div v-if="fetchState === 'Fetched'" class="info-is-generated">
         <div class="info">
           <p class="tittle">Country:</p>
           <p class="info-generated">{{ mobileNumberInfo.country }}</p>
@@ -95,7 +100,7 @@ const fetchMobileNumberInfo = async () => {
   flex-direction: column;
   background-color: #1c1c1c;
   align-items: center;
-  padding: 2rem 0.5rem;
+  padding: 2rem 1rem;
   justify-content: space-evenly;
   border-radius: 2rem;
   gap: 2rem;
@@ -146,7 +151,8 @@ button {
   flex-direction: column;
   gap: 1rem;
 }
-.info, .info-skeleton {
+.info,
+.info-skeleton {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -192,5 +198,4 @@ button {
     opacity: 1;
   }
 }
-
 </style>
