@@ -9,11 +9,10 @@ const mobileNumberInfo = ref(null)
 const fetchState = ref('Input Number to Check')
 
 const fetchMobileNumberInfo = async () => {
-  
-  if(fetchState.value === "Error Checking. Retrying...") {
-    fetchState.value = "Error Checking. Retrying..."
-  }else {
-    fetchState.value = "Checking ..."
+  if (fetchState.value === 'Error Checking. Retrying...') {
+    fetchState.value = 'Error Checking. Retrying...'
+  } else {
+    fetchState.value = 'Checking ...'
   }
 
   try {
