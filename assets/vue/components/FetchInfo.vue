@@ -21,7 +21,7 @@ const fetchMobileNumberInfo = async () => {
 </script>
 
 <template>
-  <a href="https://github.com/favorodera"><img src="../../icons/github.svg" alt="" /></a>
+  <a href="https://github.com/favorodera" target="_blank"><img src="../../icons/github.svg" alt="" /></a>
 
   <div class="main-container">
     <form method="get" @submit.prevent="fetchMobileNumberInfo">
