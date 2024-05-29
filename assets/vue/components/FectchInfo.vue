@@ -170,7 +170,6 @@ button {
   border-radius: 5px;
   margin: 5px;
   animation: pulse 1.2s ease-in-out infinite;
-  
 }
 
 .info-generated-skeleton {
