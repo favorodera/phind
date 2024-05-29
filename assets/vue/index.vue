@@ -1,7 +1,7 @@
 <script setup>
-import FectchInfo from './components/FectchInfo.vue';
+import FetchInfo from './components/FetchInfo.vue';
 </script>
 
 <template>
-<FectchInfo />
+<FetchInfo />
 </template>
