@@ -6,24 +6,23 @@ const API_KEY = import.meta.env.VITE_VERIPHONE_API_KEY
 const API_URL = 'https://api.veriphone.io/v2/verify'
 const MOBILE_NUMBER = ref(null)
 const mobileNumberInfo = ref(null)
-const fetchState = ref("Input Number to Check")
+const fetchState = ref('Input Number to Check')
 
 const fetchMobileNumberInfo = async () => {
-  
   try {
-    
     const response = await axios.get(`${API_URL}?key=${API_KEY}&phone=${MOBILE_NUMBER.value}`)
     mobileNumberInfo.value = response.data
     fetchState.value = 'Check Completed'
   } catch (error) {
-    fetchState.value = "Error Checking. Retrying..."
+    fetchState.value = 'Error Checking. Retrying...'
     fetchMobileNumberInfo()
-    
   }
 }
 </script>
 
 <template>
+  <a href="https://github.com/favorodera"><img src="../../icons/github.svg" alt="" /></a>
+
   <div class="main-container">
     <form method="get" @submit.prevent="fetchMobileNumberInfo">
       <input
@@ -38,7 +37,7 @@ const fetchMobileNumberInfo = async () => {
       <button type="submit" class="submit-button">CHECK</button>
     </form>
 
-    <p style="text-align: center;" >{{ fetchState }}</p>
+    <p style="text-align: center">{{ fetchState }}</p>
 
     <div class="info-container">
       <div v-if="fetchState === 'Check Completed'" class="info-is-generated">
@@ -99,6 +98,14 @@ const fetchMobileNumberInfo = async () => {
 </template>
 
 <style scoped>
+a {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  max-width: 42rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
 .main-container {
   width: 100%;
   max-width: 42rem;
