@@ -9,6 +9,13 @@ const mobileNumberInfo = ref(null)
 const fetchState = ref('Input Number to Check')
 
 const fetchMobileNumberInfo = async () => {
+  
+  if(fetchState.value === "Error Checking. Retrying...") {
+    fetchState.value = "Error Checking. Retrying..."
+  }else {
+    fetchState.value = "Checking ..."
+  }
+
   try {
     const response = await axios.get(`${API_URL}?key=${API_KEY}&phone=${MOBILE_NUMBER.value}`)
     mobileNumberInfo.value = response.data
