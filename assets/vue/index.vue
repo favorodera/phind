@@ -1,7 +1,7 @@
 <script setup>
-import FetchInfo from './components/FetchInfo.vue';
+import FetchInfo from './components/FetchInfo.vue'
 </script>
 
 <template>
-<FetchInfo />
+  <FetchInfo />
 </template>
