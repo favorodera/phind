@@ -28,6 +28,7 @@ const fetchMobileNumberInfo = async () => {
         name="mobile-number-input"
         id="mobile-number-input"
         class="mobile-number-input"
+        placeholder="Enter Number"
         @change.prevent="(event) => (MOBILE_NUMBER = event.target.value)"
         @input="(event) => (MOBILE_NUMBER = event.target.value)"
       />
@@ -125,6 +126,10 @@ input {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+input::placeholder {
+  font-size: 1rem;
 }
 
 button {
